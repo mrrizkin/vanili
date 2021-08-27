@@ -1,0 +1,31 @@
+{
+  "name": "vanili",
+  "version": "1.0.0",
+  "description": "frontend framework",
+  "main": "./dist/index.js",
+  "scripts": {
+    "start": "parcel test/index.html --dist-dir test/parcel -p 3000",
+    "build": "tsc"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nugrhrizki/vanili.git"
+  },
+  "keywords": [
+    "frontend",
+    "library",
+    "virtual",
+    "dom"
+  ],
+  "author": "nugrhrizki",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/nugrhrizki/vanili/issues"
+  },
+  "homepage": "https://github.com/nugrhrizki/vanili#readme",
+  "devDependencies": {
+    "parcel": "^2.0.0-rc.0",
+    "typescript": "^4.4.2"
+  },
+  "dependencies": {}
+}
