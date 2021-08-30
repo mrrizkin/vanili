@@ -36,5 +36,4 @@ const update = (model: Model): Model => {
   };
 };
 
-const app = Vanili.main({ init, view, update });
-app.init({ root: document.getElementById("root") });
+Vanili.main({ init, view, update });
