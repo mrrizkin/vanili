@@ -4,7 +4,7 @@ export type Props = {
 
 export type NodeType = "NODE" | "TEXT";
 
-export type VirtualNode = {
+export type Node = {
   $: NodeType;
   __tag: string;
   __props: Props;
@@ -12,23 +12,21 @@ export type VirtualNode = {
   __namespace?: string;
 };
 
-export type VirtualText = {
+export type Text = {
   $: NodeType;
   __text: string;
 };
 
-export type Html = VirtualNode | VirtualText;
+export type Html = Node | Text;
 
-export type HTMLDocument = {
+export type HtmlDocument = {
   title: string;
   body: Html;
 };
 
-type Hook<Msg> = () => Msg;
-
-export type VaniliDocument<Model, Msg> = {
-  view: (model: Model) => HTMLDocument;
-  init: (flags: string) => [Model, Hook<Msg>];
-  update: (msg: Msg, model: Model) => [Model, Hook<Msg>];
-  subscription: (msg: Msg, model: Model) => [Model, Hook<Msg>];
+export type VaniliDocument<Model> = {
+  view: (model: Model) => HtmlDocument;
+  init: (flags: string) => Model;
+  update: (model: Model) => Model;
+  subscription: (model: Model) => Model;
 };
