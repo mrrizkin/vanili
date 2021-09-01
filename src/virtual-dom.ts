@@ -1,22 +1,21 @@
-import { Html, VirtualNode, VirtualText, Props } from "./types";
+import { NodeType, Html, Node, Text, Props } from "./types";
 
 // HELPERS
 
 const doc: Document = document;
 
-export const createTextNode = (text: string): VirtualText => {
+export function createTextNode(text: string): Text {
   return {
     $: "TEXT",
     __text: text,
   };
-};
+}
 
-export const createNodeNS =
-  (namespace: string | undefined) =>
-  (
+export function createNodeNS(namespace: string | undefined) {
+  return function (
     tag: string,
     { props, children }: { props?: Props; children?: Html[] } = {}
-  ): VirtualNode => {
+  ): Node {
     return {
       $: "NODE",
       __tag: tag,
@@ -25,16 +24,66 @@ export const createNodeNS =
       __namespace: namespace,
     };
   };
+}
 
 export const createNode = createNodeNS(undefined);
 
+// DIFFING
+
+function pushPatch(patches: any[], type: NodeType, index: number, data: Html) {
+  const patch = {
+    $: type,
+    __index: index,
+    __data: data,
+    __domNode: undefined,
+    __eventNode: undefined,
+  };
+
+  patches.push(patch);
+  return patch;
+}
+
+export function diff(oldNode: Html, newNode: Html) {
+  let patches: any[] = [];
+  if (oldNode === newNode) return;
+
+  const oldNodeType = oldNode.$;
+  const newNodeType = newNode.$;
+
+  if (oldNodeType !== newNodeType) pushPatch(patches, newNodeType, 0, newNode);
+
+  // node type is the same
+  switch (newNodeType) {
+    case "NODE":
+      diffNode(oldNode as Node, newNode as Node, patches, 0);
+      break;
+    case "TEXT":
+      break;
+    default:
+      break;
+  }
+
+  return patches;
+}
+
+function diffNode(oldNode: Node, newNode: Node, patches: any[], index: number) {
+  if (
+    oldNode.__tag !== newNode.__tag ||
+    oldNode.__namespace !== newNode.__namespace
+  ) {
+    pushPatch(patches, "NODE", index, newNode);
+    return;
+  }
+  console.log("rearch")
+}
+
 // RENDERING
-export const render = (vDOM: Html): Text | Element => {
+export function render(vDOM: Html) {
   if (vDOM.$ === "TEXT") {
-    const vText = vDOM as VirtualText;
+    const vText = vDOM as Text;
     return doc.createTextNode(vText.__text);
   }
-  const vNode = vDOM as VirtualNode;
+  const vNode = vDOM as Node;
   // tags
   const _el = vNode.__namespace
     ? doc.createElementNS(vNode.__namespace, vNode.__tag)
@@ -50,9 +99,9 @@ export const render = (vDOM: Html): Text | Element => {
   }
 
   return _el;
-};
+}
 
-export const virtualize = (node: Element): Html => {
+export function virtualize(node: Element): Html {
   // TEXT
   if (node.nodeType === 3) {
     const text = node.textContent;
@@ -74,4 +123,4 @@ export const virtualize = (node: Element): Html => {
   }
 
   return createNode(tag, { props, children });
-};
+}
