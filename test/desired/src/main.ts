@@ -1,12 +1,12 @@
 import Vanili from "../../../src/";
 import { createNode, createTextNode } from "../../../src/virtual-dom";
-import { HTMLDocument, Html } from "../../../src/types";
+import { Html, HtmlDocument } from "../../../src/types";
 
 type Model = {
   count: number;
 };
 
-const view = (model: Model): HTMLDocument => {
+function view(model: Model): HtmlDocument {
   const count = String(model.count);
   return {
     title: "Test",
@@ -15,25 +15,29 @@ const view = (model: Model): HTMLDocument => {
       children: [header(), createTextNode("Count: " + count)],
     }),
   };
-};
+}
 
-const header = (): Html => {
+function header(): Html {
   return createNode("header", {
     props: { class: "header" },
     children: [createTextNode("Hello")],
   });
-};
+}
 
-const init = (): Model => {
+function init(_flags: string): Model {
   return {
     count: 0,
   };
-};
+}
 
-const update = (model: Model): Model => {
+function update(model: Model): Model {
   return {
     count: model.count + 1,
   };
-};
+}
 
-Vanili.main({ init, view, update });
+function subscription(model: Model): Model {
+  return model;
+}
+
+Vanili.document({ init, view, update, subscription });
