@@ -71,7 +71,7 @@ function diffNode(oldNode: Node, newNode: Node, patches: any[], index: number) {
 		pushPatch(patches, 'NODE', index, newNode)
 		return
 	}
-	console.log('rearch')
+	console.log('diffNode: rearched')
 	diffKids(oldNode, newNode, patches, index)
 }
 
@@ -95,7 +95,7 @@ function diffKids(oldParents: Node, newParents: Node, _patches: any[], _index: n
 		i++
 	) {
 		let oldKid = oldKids[i]
-		console.log(oldKid)
+		console.log('oldKid:', oldKid)
 		// do diffing again
 		// append index with kids descendant Count
 	}

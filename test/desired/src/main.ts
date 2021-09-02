@@ -24,7 +24,8 @@ function header(): Html {
 	})
 }
 
-function init(_flags: string): Model {
+function init(flags: string): Model {
+	console.log('flags:', flags)
 	return {
 		count: 0
 	}
@@ -40,4 +41,6 @@ function subscription(model: Model): Model {
 	return model
 }
 
-Vanili.document({ init, view, update, subscription })
+const app = Vanili.document({ init, view, update, subscription })
+
+app({ flags: 'hello' })

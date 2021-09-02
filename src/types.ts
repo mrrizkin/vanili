@@ -24,9 +24,9 @@ export type HtmlDocument = {
 	body: Html
 }
 
-export type VaniliDocument<Model> = {
+export type VaniliDocument<Model, Flags> = {
 	view: (model: Model) => HtmlDocument
-	init: (flags: string) => Model
+	init: (flags: Flags) => Model
 	update: (model: Model) => Model
 	subscription: (model: Model) => Model
 }
