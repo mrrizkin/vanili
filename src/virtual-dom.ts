@@ -75,6 +75,30 @@ function diffNode(oldNode: Node, newNode: Node, patches: any[], index: number) {
     return;
   }
   console.log("rearch")
+  diffKids(oldNode, newNode, patches, index)
+}
+
+function diffKids(oldParents: Node, newParents: Node, patches: any[], index: number) {
+  const oldKids = oldParents.__childrens
+  const newKids = newParents.__childrens
+
+  const oldKidsLength = oldKids.length
+  const newKidsLength = newKids.length
+
+  if(oldKidsLength > newKidsLength){
+    // remove
+  } else if (oldKidsLength < newKidsLength) {
+    // add
+  }
+
+  for(let minLength = oldKidsLength < newKidsLength ? oldKidsLength : newKidsLength, i = 0; i < minLength; i++){
+    let oldKid = oldKids[i];
+    console.log(oldKid)
+    // do diffing again
+    // append index with kids descendant Count
+  }
+
+  return
 }
 
 // RENDERING
