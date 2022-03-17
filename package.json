@@ -2,10 +2,9 @@
   "name": "@vanili/vanili",
   "version": "1.0.0",
   "description": "frontend framework",
-  "main": "./lib/index.js",
   "scripts": {
     "start": "parcel test/desired/public/index.html --dist-dir test/parcel -p 3000",
-    "build": "tsc"
+    "build": "parcel build test/desired/public/index.html --dist-dir test/demo"
   },
   "repository": {
     "type": "git",

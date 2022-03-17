@@ -10,6 +10,8 @@ export type Node = {
 	__props: Props
 	__childrens: Html[]
 	__namespace?: string
+	__binder?: Attr
+	__inline?: string
 }
 
 export type Text = {
@@ -21,7 +23,7 @@ export type Html = Node | Text
 
 export type HtmlDocument = {
 	title: string
-	body: Html
+	body: Html[]
 }
 
 export type VaniliDocument<Model, Flags> = {

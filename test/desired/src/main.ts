@@ -1,6 +1,9 @@
 import Vanili from '../../../src/'
-import { createNode, createTextNode } from '../../../src/virtual-dom'
-import { Html, HtmlDocument } from '../../../src/types'
+import { HtmlDocument } from '../../../src/types'
+import { footer } from './components/footer'
+import { header } from './components/header'
+import { hero } from './components/hero'
+import { pricing } from './components/pricing'
 
 type Model = {
 	count: number
@@ -9,19 +12,9 @@ type Model = {
 function view(model: Model): HtmlDocument {
 	const count = String(model.count)
 	return {
-		title: 'Test',
-		body: createNode('div', {
-			props: { class: 'container', id: 'root' },
-			children: [header(), createTextNode('Count: ' + count)]
-		})
+		title: 'Test Vanili',
+		body: [header(), hero(), pricing(), footer()]
 	}
-}
-
-function header(): Html {
-	return createNode('header', {
-		props: { class: 'header' },
-		children: [createTextNode('Hello')]
-	})
 }
 
 function init(flags: string): Model {
