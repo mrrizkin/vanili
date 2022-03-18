@@ -1,13 +1,11 @@
-export type Props = {
-	[key: string]: string
-}
+export type Props = [string, string]
 
 export type NodeType = 'NODE' | 'TEXT'
 
 export type Node = {
 	$: NodeType
 	__tag: string
-	__props: Props
+	__props: Props[]
 	__childrens: Html[]
 	__namespace?: string
 	__binder?: Attr

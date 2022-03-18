@@ -1,5 +1,5 @@
 import { VaniliDocument } from './types'
-import { createNode, render } from './virtual-dom'
+import { createNode, render, virtualize } from './virtual-dom'
 
 type Args<Flags> = {
 	flags: Flags
@@ -13,8 +13,7 @@ export default {
 				const view = app.view
 				let title = document.title
 				let bodyNode = document.body
-				// fix: virtualize function
-				// let currNode = virtualize(bodyNode)
+				let currNode = virtualize(bodyNode)
 				return makeAnimator(initialModel, function (model: Model) {
 					let doc = view(model)
 					let nextNode = createNode('body', { children: doc.body })
