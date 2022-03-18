@@ -1,7 +1,7 @@
 import Vanili from '../../../src/'
 import { HtmlDocument } from '../../../src/types'
-import { footer } from './components/footer'
-import { header } from './components/header'
+import { headerEl } from './components/header'
+import { footerEl } from './components/footer'
 import { hero } from './components/hero'
 import { pricing } from './components/pricing'
 
@@ -9,11 +9,10 @@ type Model = {
 	count: number
 }
 
-function view(model: Model): HtmlDocument {
-	const count = String(model.count)
+function view(_model: Model): HtmlDocument {
 	return {
 		title: 'Test Vanili',
-		body: [header(), hero(), pricing(), footer()]
+		body: [headerEl(), hero(), pricing(), footerEl()]
 	}
 }
 

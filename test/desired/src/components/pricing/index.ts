@@ -1,10 +1,7 @@
-import { createNode } from '../../../../../src/virtual-dom'
+import { div } from '../../../../../src/html'
 import { header } from './header'
 import { plan } from './plan'
 
 export function pricing() {
-	return createNode('div', {
-		props: { class: 'container py-3' },
-		children: [header(), plan()]
-	})
+	return div(['class', 'container py-3'])(header(), plan())
 }

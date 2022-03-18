@@ -1,85 +1,35 @@
-import { createNode, createTextNode } from '../../../../src/virtual-dom'
+import { div, footer, p, text, ul, li, a } from '../../../../src/html'
 
-export function footer() {
-	return createNode('div', {
-		props: { class: 'container' },
-		children: [
-			createNode('footer', {
-				props: {
-					class: 'd-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top'
-				},
-				children: [
-					createNode('p', {
-						props: { class: 'col-md-4 mb-0 text-muted' },
-						children: [createTextNode('© 2021 Company, Inc')]
-					}),
-					createNode('ul', {
-						props: { class: 'nav col-md-4 justify-content-end' },
-						children: [
-							createNode('li', {
-								props: { class: 'nav-item' },
-								children: [
-									createNode('a', {
-										props: {
-											href: '#',
-											class: 'nav-link px-2 text-muted'
-										},
-										children: [createTextNode('Home')]
-									})
-								]
-							}),
-							createNode('li', {
-								props: { class: 'nav-item' },
-								children: [
-									createNode('a', {
-										props: {
-											href: '#',
-											class: 'nav-link px-2 text-muted'
-										},
-										children: [createTextNode('Features')]
-									})
-								]
-							}),
-							createNode('li', {
-								props: { class: 'nav-item' },
-								children: [
-									createNode('a', {
-										props: {
-											href: '#',
-											class: 'nav-link px-2 text-muted'
-										},
-										children: [createTextNode('Pricing')]
-									})
-								]
-							}),
-							createNode('li', {
-								props: { class: 'nav-item' },
-								children: [
-									createNode('a', {
-										props: {
-											href: '#',
-											class: 'nav-link px-2 text-muted'
-										},
-										children: [createTextNode('FAQs')]
-									})
-								]
-							}),
-							createNode('li', {
-								props: { class: 'nav-item' },
-								children: [
-									createNode('a', {
-										props: {
-											href: '#',
-											class: 'nav-link px-2 text-muted'
-										},
-										children: [createTextNode('About')]
-									})
-								]
-							})
-						]
-					})
-				]
-			})
-		]
-	})
+export function footerEl() {
+	return div(['class', 'container'])(
+		footer([
+			'class',
+			'd-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top'
+		])(
+			p(['class', 'col-md-4 mb-0 text-muted'])(text('© 2021 Company, Inc')),
+			ul(['class', 'nav col-md-4 justify-content-end'])(
+				li(['class', 'nav-item'])(
+					a(['href', '#'], ['class', 'nav-link px-2 text-muted'])(text('Home'))
+				),
+				li(['class', 'nav-item'])(
+					a(
+						['href', '#'],
+						['class', 'nav-link px-2 text-muted']
+					)(text('Features'))
+				),
+				li(['class', 'nav-item'])(
+					a(['href', '#'], ['class', 'nav-link px-2 text-muted'])(text('FAQs'))
+				),
+				li(['class', 'nav-item'])(
+					a(['href', '#'], ['class', 'nav-link px-2 text-muted'])(text('About'))
+				),
+				li(['class', 'nav-item'])(
+					a(
+						['href', 'https://github.com/nugrhrizki/vanili'],
+						['class', 'nav-link px-2 text-muted']
+					)(text('Source'))
+				)
+			)
+		)
+	)
 }
