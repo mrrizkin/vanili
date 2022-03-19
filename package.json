@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "description": "frontend framework",
   "scripts": {
-    "start": "parcel test/desired/public/index.html --dist-dir test/parcel -p 3000",
-    "build": "parcel build test/desired/public/index.html --dist-dir test/demo"
+    "start": "parcel demo/public/index.html --dist-dir demo/parcel -p 3000",
+    "build": "parcel build demo/public/index.html --dist-dir dist/demo"
   },
   "repository": {
     "type": "git",
