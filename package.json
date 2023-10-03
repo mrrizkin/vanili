@@ -23,7 +23,7 @@
   },
   "homepage": "https://github.com/nugrhrizki/vanili#readme",
   "devDependencies": {
-    "parcel": "^2.0.0-rc.0",
+    "parcel": "^2.9.3",
     "typescript": "^4.4.2"
   },
   "dependencies": {}
